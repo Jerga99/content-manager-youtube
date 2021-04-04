@@ -49,9 +49,9 @@ const ActiveResource = () => {
   return (
     <div className="active-resource">
       <h1 className="resource-name">
-        {hasResource ? resource.title : "No Resource Active"}
+        No Resource Active
       </h1>
-      <div className="time-wrapper">
+      {/* <div className="time-wrapper">
         { hasResource &&
           ( seconds > 0 ?
             <h2 className="elapsed-time">
@@ -66,20 +66,20 @@ const ActiveResource = () => {
             </h2>
           )
         }
-      </div>
-      {
-        hasResource ?
-          <Link href={`/resources/${resource.id}`}>
+      </div> */}
+      {/* {
+        hasResource ? */}
+          {/* <Link href={`/resources/${resource.id}`}>
             <a className="button">
               Go to resource
             </a>
-          </Link> :
+          </Link> : */}
           <Link href="/">
             <a className="button">
               Go to resources
             </a>
         </Link>
-      }
+      {/* } */}
     </div>
   )
 }
