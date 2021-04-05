@@ -5,8 +5,14 @@ import axios from "axios";
 import ResourceLabel from "components/ResourceLabel";
 import moment from "moment";
 import API from "api_server/ResourceAPI";
+import { useRouter } from "next/router";
 
 const ResourceDetail = ({resource}) => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <h1>Loading!</h1>
+  }
 
   const activeResource = () => {
     axios.patch("/api/resources", {...resource, status: "active"})
@@ -69,7 +75,7 @@ export async function getStaticPaths({params}) {
 
   return {
     paths,
-    fallback: false
+    fallback: true
   }
 }
 
