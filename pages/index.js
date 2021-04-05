@@ -4,6 +4,7 @@ import ResourceHighlight from "components/ResourceHighlight";
 import Newsletter from "components/Newsletter";
 import ResourceList from "components/ResourceList";
 import Footer from "components/Footer";
+import API from "api_server/ResourceAPI";
 
 function Home({resources}) {
   return (
@@ -21,8 +22,8 @@ function Home({resources}) {
 }
 
 export async function getServerSideProps() {
-  const resData = await fetch(`http://localhost:3000/api/resources`);
-  const data = await resData.json();
+  const res = await API.fetchResources();
+  const data = await res.json();
 
   return {
     props: {

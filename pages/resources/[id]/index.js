@@ -4,6 +4,7 @@ import Link from "next/link";
 import axios from "axios";
 import ResourceLabel from "components/ResourceLabel";
 import moment from "moment";
+import API from "api_server/ResourceAPI";
 
 const ResourceDetail = ({resource}) => {
 
@@ -55,8 +56,8 @@ const ResourceDetail = ({resource}) => {
 }
 
 export async function getServerSideProps({params}) {
-  const dataRes = await fetch(`http://localhost:3000/api/resources/${params.id}`);
-  const data = await dataRes.json();
+  const res = await API.fetchResource(params.id);
+  const data = await res.json();
 
   return {
     props: {
