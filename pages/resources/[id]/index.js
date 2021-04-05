@@ -55,9 +55,27 @@ const ResourceDetail = ({resource}) => {
   )
 }
 
-export async function getServerSideProps({params}) {
-  const res = await API.fetchResource(params.id);
-  const data = await res.json();
+export async function getStaticPaths({params}) {
+  const dataRes = await API.fetchResources();
+  const resources = await dataRes.json();
+
+  const paths = resources.map(resource => (
+    {
+      params: {
+        id: resource.id
+      }
+    }
+  ))
+
+  return {
+    paths,
+    fallback: false
+  }
+}
+
+export async function getStaticProps({params}) {
+  const dataRes = await API.fetchResource(params.id);
+  const data = await dataRes.json();
 
   return {
     props: {
